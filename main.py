@@ -63,6 +63,7 @@ def open_popup():
 #crea un botón
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
+btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
 
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
