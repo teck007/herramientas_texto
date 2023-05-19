@@ -3,7 +3,8 @@
 from tkinter import *
 
 #importa funciones de archivos
-from contar_letras import * 
+from contar_letras import *
+from borrar_espacios_extra import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -63,15 +64,16 @@ def open_popup():
 #crea un botón
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
+btn_borrar_espacios_extra= Button(ventana, text="Eliminar espacios extra", command=lambda:resultado(borrar_espacios_extra(txt_in.get("1.0","end-1c"))))
 
 #define ubicación del botón
-#btn_mover_resultado.place(x=10,y=50)
+# btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
 # btn_reversa_de_texto.place(x=160,y=260)
 # btn_eliminar_espacios.place(x=270,y=260)
 # btn_contar_palabras.place(x=400,y=260)
 # btn_buscar_reemplazar.place(x=520,y=260)
 # Linea Abajo
-# btn_borrar_espacios_extra.place(x=50, y=290)
+btn_borrar_espacios_extra.place(x=50, y=290)
 # btn_ordenar_lista.place(x=80,y=290)
 ventana.mainloop()
