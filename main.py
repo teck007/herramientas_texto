@@ -4,6 +4,7 @@ from tkinter import *
 
 #importa funciones de archivos
 from contar_letras import * 
+from invertir_texto import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -68,7 +69,7 @@ btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: re
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
-# btn_reversa_de_texto.place(x=160,y=260)
+btn_reversa_de_texto.place(x=160,y=260)
 # btn_eliminar_espacios.place(x=270,y=260)
 # btn_contar_palabras.place(x=400,y=260)
 # btn_buscar_reemplazar.place(x=520,y=260)
