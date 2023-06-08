@@ -4,6 +4,7 @@ from tkinter import *
 
 #importa funciones de archivos
 from contar_letras import * 
+from linea_azar import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -35,6 +36,7 @@ txt_out.place(x=50, y=350, width=600, height=200)
 def resultado(texto):
 	txt_out.delete("1.0", END)
 	txt_out.insert(END, texto)
+
 def mover_resultado(texto):
 	txt_out.delete("1.0", END)
 	txt_out.insert(END, texto)
@@ -42,7 +44,6 @@ def mover_resultado(texto):
 
 def open_popup():
 	top = Toplevel(ventana)
-
 	#Bloquear el cambio de tamaño de la ventana
 	top.resizable(False, False)
 	
@@ -63,6 +64,7 @@ def open_popup():
 #crea un botón
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
+btn_linea_azar =Button(ventana,text="Linea alazar",command=lambda: resultado(linea_azar(txt_in.get("1.0","end-1c"))))
 
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
@@ -74,4 +76,5 @@ btn_contar_letras.place(x=50, y=260)
 # Linea Abajo
 # btn_borrar_espacios_extra.place(x=50, y=290)
 # btn_ordenar_lista.place(x=80,y=290)
+btn_linea_azar.place(x=200,y=260)
 ventana.mainloop()
