@@ -3,7 +3,8 @@
 from tkinter import *
 
 #importa funciones de archivos
-from contar_letras import *
+from contar_letras import * 
+from buscar_reemplazar import *
 from ordenar_lista import *
 from contar_palabras import *
 from eliminar_espacios import *
@@ -46,7 +47,7 @@ def mover_resultado(texto):
 
 def open_popup():
 	top = Toplevel(ventana)
-
+    
 	#Bloquear el cambio de tamaño de la ventana
 	top.resizable(False, False)
 	
@@ -63,6 +64,7 @@ def open_popup():
 	#Centrar ventana sobre ventana madre 
 	top.wm_transient(ventana)
 	top.mainloop()
+	
 
 #crea un botón
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
@@ -75,6 +77,7 @@ btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: re
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
+btn_buscar_reemplazar.place(x=520,y=260)
 btn_contar_palabras.place(x=400,y=260)
 btn_reversa_de_texto.place(x=160,y=260)
 btn_eliminar_espacios.place(x=270,y=260)
