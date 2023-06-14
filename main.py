@@ -13,7 +13,7 @@ from invertir_texto import *
 #crea objeto ventana 
 ventana = Tk() 
 ventana.config(width='800', height='600')
-ventana.title("Herramientas de texto V.1.0")
+ventana.title("Herramientas de texto V.0.1")
 
 #Bloquear el cambio de tamaño de la ventana
 ventana.resizable(False, False)
