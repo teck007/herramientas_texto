@@ -5,6 +5,7 @@ from tkinter import *
 #importa funciones de archivos
 from contar_letras import * 
 from invertir_texto import *
+from agregar_texto_linea import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -61,15 +62,33 @@ def open_popup():
 	top.wm_transient(ventana)
 	top.mainloop()
 
+def open_agregar():
+	top = Toplevel(ventana)
+
+	#Bloquear el cambio de tamaño de la ventana
+	top.resizable(False, False)
+	
+	top.geometry("240x200")
+	top.title("Agregar Texto")
+	Label(top, text= "agregar texto", font=('Mistral 10 bold')).place(x=40,y=20)
+	txt_add=Entry(top, textvariable="")
+	txt_add.place(x=40,y=45)
+	Button(top, text="agregar",command=lambda: resultado(agregar_texto_al_final(txt_in.get("1.0","end-1c"),txt_add.get()))).place(x=50,y=150)
+	#Centrar ventana sobre ventana madre 
+	top.wm_transient(ventana)
+	top.mainloop()
+
 #crea un botón
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
 btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
+btn_agregar_texto= Button(ventana, text="Agregar Texto linea", command=lambda: open_agregar())
 
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
 btn_reversa_de_texto.place(x=160,y=260)
+btn_agregar_texto.place(x=270, y=260)
 # btn_eliminar_espacios.place(x=270,y=260)
 # btn_contar_palabras.place(x=400,y=260)
 # btn_buscar_reemplazar.place(x=520,y=260)
@@ -77,3 +96,5 @@ btn_reversa_de_texto.place(x=160,y=260)
 # btn_borrar_espacios_extra.place(x=50, y=290)
 # btn_ordenar_lista.place(x=80,y=290)
 ventana.mainloop()
+
+
