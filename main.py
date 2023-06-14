@@ -6,6 +6,7 @@ from tkinter import *
 from contar_letras import * 
 from eliminar_espacios import *
 
+
 #crea objeto ventana 
 ventana = Tk() 
 ventana.config(width='800', height='600')
@@ -39,10 +40,16 @@ def resultado(texto):
 def mover_resultado(texto):
 	txt_out.delete("1.0", END)
 	txt_out.insert(END, texto)
-
+def traspasar_texto(texto):
+    texto= txt_out.get("1.0","end-1c")
+    txt_in.delete("1.0", END)
+    txt_in.insert(END, texto)
+   
 
 def open_popup():
 	top = Toplevel(ventana)
+
+
 
 	#Bloquear el cambio de tamaño de la ventana
 	top.resizable(False, False)
@@ -65,7 +72,10 @@ def open_popup():
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
 btn_eliminar_espacios = Button(ventana, text="eliminar espacios", command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
+flecha_arriba = Button(ventana, text="¡!", command=lambda: resultado(flecha_arriba(txt_in.get("1.0","end-1c"))))
+
 #define ubicación del botón
+flecha_arriba.place(x=5, y=250)
 #btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
 # btn_reversa_de_texto.place(x=160,y=260)
