@@ -8,6 +8,7 @@ from ordenar_lista import *
 from contar_palabras import *
 from eliminar_espacios import *
 from invertir_texto import *
+from convertir_mayuscula import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -58,7 +59,7 @@ def open_popup():
 	Label(top, text= "Texto a reemplazar", font=('Mistral 10 bold')).place(x=40,y=80)
 	txt_ree=Entry(top, textvariable="")
 	txt_ree.place(x=40,y=105)
-	Button(top, text="Buscar reemplazar",command=lambda: resultado(buscar_reemplazar(txt_in.get("1.0","end-1c"),txt_bus.get(),txt_ree.get()))).place(x=50,y=150)
+	Button(top, text="Buscar reemplazar",command=lambda: resultado(buscar_remplazar(txt_in.get("1.0","end-1c"),txt_bus.get(),txt_ree.get()))).place(x=50,y=150)
 	
 	#Centrar ventana sobre ventana madre 
 	top.wm_transient(ventana)
@@ -71,6 +72,8 @@ btn_ordenar_lista = Button(ventana, text="Ordenar lista", command=lambda: result
 btn_contar_palabras = Button(ventana, text="Contar palabras",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
 btn_eliminar_espacios = Button(ventana, text="eliminar espacios", command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
 btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
+btn_convertir_mayuscula = Button(ventana, text="Convertir mayuscula", command=lambda: resultado(convertir_mayuscula(txt_in.get("1.0","end-1c"))))
+
 
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
@@ -78,6 +81,7 @@ btn_contar_letras.place(x=50, y=260)
 btn_contar_palabras.place(x=400,y=260)
 btn_reversa_de_texto.place(x=160,y=260)
 btn_eliminar_espacios.place(x=270,y=260)
+btn_convertir_mayuscula.place(x=400,y=260)
 # btn_buscar_reemplazar.place(x=520,y=260)
 # Linea Abajo
 # btn_borrar_espacios_extra.place(x=50, y=290)
