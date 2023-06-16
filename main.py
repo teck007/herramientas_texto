@@ -2,6 +2,7 @@
 #importa libreria para interfaz gráfica y fondo
 from tkinter import *
 from PIL import ImageTk, Image, ImageFont, ImageDraw
+import os
 
 #importa funciones de archivos
 from contar_letras import *
@@ -16,12 +17,12 @@ ventana.title("Herramientas de texto V.1.0")
 ventana.resizable(False, False)
 
 # Esto es para verificar que la imagen del fondo está en la ubicación acordada.
-import os
+
 if not os.path.isfile("./17010.jpg"):
     print("El archivo '17010.jpg' no existe en la ubicación especificada.")
 
 ### FONDO ###
-imagen_fondo = Image.open("/17010.jpg")
+imagen_fondo = Image.open(os.path.dirname(__file__)+"/17010.jpg")
 imagen_fondo = imagen_fondo.resize((1330, 570), Image.ANTIALIAS)
 fondo = ImageTk.PhotoImage(imagen_fondo)
 
