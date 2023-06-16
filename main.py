@@ -7,6 +7,11 @@ import os
 #importa funciones de archivos
 from contar_letras import *
 from borrar_espacios_extra import *
+from buscar_reemplazar import *
+from ordenar_lista import *
+from contar_palabras import *
+from eliminar_espacios import *
+from invertir_texto import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -63,7 +68,7 @@ def mover_resultado(texto):
 
 def open_popup():
 	top = Toplevel(ventana)
-
+    
 	#Bloquear el cambio de tamaño de la ventana
 	top.resizable(False, False)
 	
@@ -80,6 +85,7 @@ def open_popup():
 	#Centrar ventana sobre ventana madre 
 	top.wm_transient(ventana)
 	top.mainloop()
+	
 
 #crea un botón
 btn_contar_letras = Button(ventana, text="       Contar letras        ", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
