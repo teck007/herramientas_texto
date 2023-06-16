@@ -21,7 +21,7 @@ if not os.path.isfile("./17010.jpg"):
     print("El archivo '17010.jpg' no existe en la ubicación especificada.")
 
 ### FONDO ###
-imagen_fondo = Image.open("17010.jpg")
+imagen_fondo = Image.open("/17010.jpg")
 imagen_fondo = imagen_fondo.resize((1330, 570), Image.ANTIALIAS)
 fondo = ImageTk.PhotoImage(imagen_fondo)
 
