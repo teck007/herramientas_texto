@@ -41,6 +41,12 @@ def mover_resultado(texto):
 	txt_out.delete("1.0", END)
 	txt_out.insert(END, texto)
 
+def eliminar_texto():
+    txt_in.insert(END, "")
+    txt_in.delete("1.0", END)
+    
+
+
 
 def open_popup():
 	top = Toplevel(ventana)
@@ -65,10 +71,11 @@ def open_popup():
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
 btn_linea_azar =Button(ventana,text="Linea alazar",command=lambda: resultado(linea_azar(txt_in.get("1.0","end-1c"))))
-
+btn_eliminar_texto =Button(ventana,text="eliminar texto",command=lambda: eliminar_texto())
 #define ubicación del botón
 #btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
+btn_eliminar_texto.place(x=320,y=260)
 # btn_reversa_de_texto.place(x=160,y=260)
 # btn_eliminar_espacios.place(x=270,y=260)
 # btn_contar_palabras.place(x=400,y=260)
