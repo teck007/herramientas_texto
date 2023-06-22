@@ -23,25 +23,20 @@ ventana.title("Herramientas de texto V.1.0")
 #Bloquear el cambio de tamaño de la ventana
 ventana.resizable(False, False)
 
-# Esto es para verificar que la imagen del fondo está en la ubicación acordada.
-
-if not os.path.isfile("./17010.jpg"):
-    print("El archivo '17010.jpg' no existe en la ubicación especificada.")
-
 ### FONDO ###
 imagen_fondo = Image.open(os.path.dirname(__file__)+"/17010.jpg")
-imagen_fondo = imagen_fondo.resize((1330, 570), Image.ANTIALIAS)
+imagen_fondo = imagen_fondo.resize((1330, 570))
 fondo = ImageTk.PhotoImage(imagen_fondo)
 
 label_fondo = Label(ventana, image=fondo)
 label_fondo.place(x=0, y=0, relwidth=1, relheight=1)
 
 #Abre y cierre de marco decorativo dentro de la ventana
-lbl1= Label(ventana, text="╭══　　　　　　　　　　Herramientas de texto　　　　　　　　　══╮", font=("Arial Bold",14), background="#05294D", fg="white")
-lbl_CierreDecorativo_lbl1= Label(ventana, text="╰══　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　══╯", font=("Arial Bold",14), background="#05294D", fg="white")
+lbl1= Label(ventana, text="╭══　　　　　　　　　　　　　Herramientas de texto　　　　　　　　　　　　══╮", font=("Arial Bold",14), background="#05294D", fg="white")
+lbl_CierreDecorativo_lbl1= Label(ventana, text="╰══　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　══╯", font=("Arial Bold",14), background="#05294D", fg="white")
 #Define ubicación del abre y cierre del marco decorativo dentro de la ventana
-lbl1.place(x=345, y=15)
-lbl_CierreDecorativo_lbl1.place(x=345,y=150)
+lbl1.place(x=305, y=15)
+lbl_CierreDecorativo_lbl1.place(x=305,y=150)
 
 ventana.title("Herramientas de texto V.1.0")
 #crea label "Ingresa texto" y "Resultado"
@@ -83,7 +78,7 @@ def open_popup():
 	Label(top, text= "Texto a reemplazar", font=('Mistral 10 bold')).place(x=40,y=80)
 	txt_ree=Entry(top, textvariable="")
 	txt_ree.place(x=40,y=105)
-	Button(top, text="Buscar reemplazar",command=lambda: resultado(buscar_remplazar(txt_in.get("1.0","end-1c"),txt_bus.get(),txt_ree.get()))).place(x=50,y=150)
+	Button(top, text="Buscar reemplazar",command=lambda: resultado(buscar_reemplazar(txt_in.get("1.0","end-1c"),txt_bus.get(),txt_ree.get()))).place(x=50,y=150)
 	
 	#Centrar ventana sobre ventana madre 
 	top.wm_transient(ventana)
@@ -107,48 +102,29 @@ def open_agregar():
 	top.mainloop()
 
 #crea un botón
-btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
-btn_contar_palabras = Button(ventana, text="Contar palabras",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
-btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
-btn_agregar_texto= Button(ventana, text="Agregar Texto linea", command=lambda: open_agregar())
+btn_contar_letras = Button(ventana, text="Contar letras", width="10", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
+btn_contar_palabras = Button(ventana, text="Contar palabras", width="10",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
+btn_convertir_mayuscula = Button(ventana, text="Todo mayúscula", width="10", command=lambda: resultado(convertir_mayuscula(txt_in.get("1.0","end-1c"))))
+btn_reversa_de_texto = Button(ventana, text="Invertir texto", width="10",command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
 
-#define ubicación del botón
-#btn_mover_resultado.place(x=10,y=50)
-btn_contar_letras.place(x=50, y=260)
-btn_reversa_de_texto.place(x=160,y=260)
-
-# btn_eliminar_espacios.place(x=270,y=260)
-# btn_contar_palabras.place(x=400,y=260)
-# btn_buscar_reemplazar.place(x=520,y=260)
-# Linea Abajo
-# btn_borrar_espacios_extra.place(x=50, y=290)
-# btn_ordenar_lista.place(x=80,y=290)
-ventana.mainloop()
-
-btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
-btn_contar_palabras = Button(ventana, text="Contar palabras",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
-btn_convertir_mayuscula = Button(ventana, text="Convertir mayuscula", command=lambda: resultado(convertir_mayuscula(txt_in.get("1.0","end-1c"))))
-btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
-btn_agregar_texto= Button(ventana, text="Agregar Texto linea", command=lambda: open_agregar())
-
-btn_borrar_espacios_extra= Button(ventana, text="Eliminar espacios extra", command=lambda:resultado(borrar_espacios_extra(txt_in.get("1.0","end-1c"))))
-btn_eliminar_espacios = Button(ventana, text="Eliminar espacios", command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
-btn_ordenar_lista = Button(ventana, text="Ordenar lista", command=lambda: resultado(ordenar_lista(txt_in.get("1.0","end-1c"))))
-btn_buscar_reemplazar= Button(ventana, text="Buscar y reemplazar", command=lambda: open_popup())
-
+btn_borrar_espacios_extra= Button(ventana, text="Eliminar espacios adic.", width="14",command=lambda:resultado(borrar_espacios_extra(txt_in.get("1.0","end-1c"))))
+btn_eliminar_espacios = Button(ventana, text="Eliminar espacios", width="14",command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
+btn_ordenar_lista = Button(ventana, text="Ordenar lista", width="14",command=lambda: resultado(ordenar_lista(txt_in.get("1.0","end-1c"))))
+btn_buscar_reemplazar= Button(ventana, text="Buscar y reemplazar",width="14", command=lambda: open_popup())
+btn_agregar_texto= Button(ventana, text="Agregar Texto a lineas",width="14", command=lambda: open_agregar())
 
 #define ubicación del botón
 # btn_mover_resultado.place(x=10,y=50)
-btn_contar_letras.place(x=405, y=60)
-btn_contar_palabras.place(x=530,y=60)
-btn_convertir_mayuscula.place(x=655,y=60)
-btn_reversa_de_texto.place(x=825,y=60)
-btn_agregar_texto.place(x=270, y=260)
+btn_contar_letras.place(x=425, y=60)
+btn_contar_palabras.place(x=550,y=60)
+btn_convertir_mayuscula.place(x=675,y=60)
+btn_reversa_de_texto.place(x=800,y=60)
 
 # Linea Abajo
-btn_borrar_espacios_extra.place(x=405, y=105)
-btn_eliminar_espacios.place(x=630,y=105)
-btn_ordenar_lista.place(x=825,y=105)
-btn_buscar_reemplazar.place(x=1020,y=105)
+btn_borrar_espacios_extra.place(x=310, y=105)
+btn_eliminar_espacios.place(x=460,y=105)
+btn_ordenar_lista.place(x=610,y=105)
+btn_buscar_reemplazar.place(x=760,y=105)
+btn_agregar_texto.place(x=910, y=105)
 
 ventana.mainloop()
