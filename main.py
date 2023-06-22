@@ -1,37 +1,64 @@
 #PROGRAMA QUE INCLUYE HERRAMIENTAS PARA TEXTOS
-#importa libreria para interfaz gráfica
+#importa libreria para interfaz gráfica y fondo
 from tkinter import *
+from PIL import ImageTk, Image, ImageFont, ImageDraw
+import os
 
 #importa funciones de archivos
-from contar_letras import * 
+from contar_letras import *
+from borrar_espacios_extra import *
+from buscar_reemplazar import *
+from ordenar_lista import *
+from contar_palabras import *
+from eliminar_espacios import *
 from invertir_texto import *
 from agregar_texto_linea import *
+from convertir_mayuscula import *
 
 #crea objeto ventana 
 ventana = Tk() 
-ventana.config(width='800', height='600')
+ventana.config(width='1330', height='570', background="#5dc1b9")
 ventana.title("Herramientas de texto V.1.0")
 
 #Bloquear el cambio de tamaño de la ventana
 ventana.resizable(False, False)
 
-#crea un primer label
-lbl1= Label(ventana, text="Entrada de texto", font=("Arial Bold",14))
-#define ubicación del label 1
-lbl1.place(x=50, y=20)
+# Esto es para verificar que la imagen del fondo está en la ubicación acordada.
 
-#crea un segundo label
-lbl2 = Label(ventana, text="Resultado", font=("Arial Bold",14))
-#define ubicación del label 1
-lbl2.place(x=50, y=320)
+if not os.path.isfile("./17010.jpg"):
+    print("El archivo '17010.jpg' no existe en la ubicación especificada.")
+
+### FONDO ###
+imagen_fondo = Image.open(os.path.dirname(__file__)+"/17010.jpg")
+imagen_fondo = imagen_fondo.resize((1330, 570), Image.ANTIALIAS)
+fondo = ImageTk.PhotoImage(imagen_fondo)
+
+label_fondo = Label(ventana, image=fondo)
+label_fondo.place(x=0, y=0, relwidth=1, relheight=1)
+
+#Abre y cierre de marco decorativo dentro de la ventana
+lbl1= Label(ventana, text="╭══　　　　　　　　　　Herramientas de texto　　　　　　　　　══╮", font=("Arial Bold",14), background="#05294D", fg="white")
+lbl_CierreDecorativo_lbl1= Label(ventana, text="╰══　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　══╯", font=("Arial Bold",14), background="#05294D", fg="white")
+#Define ubicación del abre y cierre del marco decorativo dentro de la ventana
+lbl1.place(x=345, y=15)
+lbl_CierreDecorativo_lbl1.place(x=345,y=150)
+
+ventana.title("Herramientas de texto V.1.0")
+#crea label "Ingresa texto" y "Resultado"
+lbl_resul = Label(ventana, text="»»————　↓ ★ Resultado ★ ↓　————««", font=("Arial Bold",14), background="#05294D", fg="white")
+lbl_ingrese = Label(ventana, text="»»————　↓ ★ Ingrese texto aquí ★ ↓　————««", font=("Arial Bold",14), background="#05294D", fg="white")
+#define ubicación del label 2
+lbl_resul.place(x=775, y=250)
+lbl_ingrese.place(x=110, y=250)
+
 
 #crea un campo de texto para ingresar
-txt_in = Text(ventana)
-txt_in.place(x=50, y=50, width=600, height=200)
+txt_in =Text(ventana)
+txt_in.place(x=50, y=290, width=600, height=200)
 
 #crea un campo de texto para el resultado
 txt_out = Text(ventana)
-txt_out.place(x=50, y=350, width=600, height=200)
+txt_out.place(x=680, y=290, width=600, height=200)
 
 #función que envia el resultado al campo de texto
 def resultado(texto):
@@ -44,7 +71,7 @@ def mover_resultado(texto):
 
 def open_popup():
 	top = Toplevel(ventana)
-
+    
 	#Bloquear el cambio de tamaño de la ventana
 	top.resizable(False, False)
 	
@@ -56,11 +83,12 @@ def open_popup():
 	Label(top, text= "Texto a reemplazar", font=('Mistral 10 bold')).place(x=40,y=80)
 	txt_ree=Entry(top, textvariable="")
 	txt_ree.place(x=40,y=105)
-	Button(top, text="Buscar reemplazar",command=lambda: resultado(buscar_reemplazar(txt_in.get("1.0","end-1c"),txt_bus.get(),txt_ree.get()))).place(x=50,y=150)
+	Button(top, text="Buscar reemplazar",command=lambda: resultado(buscar_remplazar(txt_in.get("1.0","end-1c"),txt_bus.get(),txt_ree.get()))).place(x=50,y=150)
 	
 	#Centrar ventana sobre ventana madre 
 	top.wm_transient(ventana)
 	top.mainloop()
+	
 
 def open_agregar():
 	top = Toplevel(ventana)
@@ -80,7 +108,7 @@ def open_agregar():
 
 #crea un botón
 btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
-btn_buscar_reemplazar = Button(ventana, text="Buscar reemplazar",command=lambda: open_popup())
+btn_contar_palabras = Button(ventana, text="Contar palabras",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
 btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
 btn_agregar_texto= Button(ventana, text="Agregar Texto linea", command=lambda: open_agregar())
 
@@ -88,7 +116,7 @@ btn_agregar_texto= Button(ventana, text="Agregar Texto linea", command=lambda: o
 #btn_mover_resultado.place(x=10,y=50)
 btn_contar_letras.place(x=50, y=260)
 btn_reversa_de_texto.place(x=160,y=260)
-btn_agregar_texto.place(x=270, y=260)
+
 # btn_eliminar_espacios.place(x=270,y=260)
 # btn_contar_palabras.place(x=400,y=260)
 # btn_buscar_reemplazar.place(x=520,y=260)
@@ -97,4 +125,30 @@ btn_agregar_texto.place(x=270, y=260)
 # btn_ordenar_lista.place(x=80,y=290)
 ventana.mainloop()
 
+btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
+btn_contar_palabras = Button(ventana, text="Contar palabras",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
+btn_convertir_mayuscula = Button(ventana, text="Convertir mayuscula", command=lambda: resultado(convertir_mayuscula(txt_in.get("1.0","end-1c"))))
+btn_reversa_de_texto = Button(ventana, text="Invertir texto", command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
+btn_agregar_texto= Button(ventana, text="Agregar Texto linea", command=lambda: open_agregar())
 
+btn_borrar_espacios_extra= Button(ventana, text="Eliminar espacios extra", command=lambda:resultado(borrar_espacios_extra(txt_in.get("1.0","end-1c"))))
+btn_eliminar_espacios = Button(ventana, text="Eliminar espacios", command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
+btn_ordenar_lista = Button(ventana, text="Ordenar lista", command=lambda: resultado(ordenar_lista(txt_in.get("1.0","end-1c"))))
+btn_buscar_reemplazar= Button(ventana, text="Buscar y reemplazar", command=lambda: open_popup())
+
+
+#define ubicación del botón
+# btn_mover_resultado.place(x=10,y=50)
+btn_contar_letras.place(x=405, y=60)
+btn_contar_palabras.place(x=530,y=60)
+btn_convertir_mayuscula.place(x=655,y=60)
+btn_reversa_de_texto.place(x=825,y=60)
+btn_agregar_texto.place(x=270, y=260)
+
+# Linea Abajo
+btn_borrar_espacios_extra.place(x=405, y=105)
+btn_eliminar_espacios.place(x=630,y=105)
+btn_ordenar_lista.place(x=825,y=105)
+btn_buscar_reemplazar.place(x=1020,y=105)
+
+ventana.mainloop()
