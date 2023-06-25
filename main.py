@@ -96,7 +96,8 @@ def open_agregar():
 	Label(top, text= "agregar texto", font=('Mistral 10 bold')).place(x=40,y=20)
 	txt_add=Entry(top, textvariable="")
 	txt_add.place(x=40,y=45)
-	Button(top, text="agregar",command=lambda: resultado(agregar_texto_al_final(txt_in.get("1.0","end-1c"),txt_add.get()))).place(x=50,y=150)
+	btn_agregar_texto = Button(top, text="agregar",command=lambda: resultado(agregar_texto_al_final(txt_in.get("1.0","end-1c"),txt_add.get())))
+	btn_agregar_texto.place(x=50,y=150)
 	#Centrar ventana sobre ventana madre 
 	top.wm_transient(ventana)
 	top.mainloop()
