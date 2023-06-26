@@ -5,7 +5,8 @@ from PIL import ImageTk, Image, ImageFont, ImageDraw
 import os
 
 #importa funciones de archivos
-from contar_letras import *
+from contar_letras import * 
+from linea_azar import *
 from borrar_espacios_extra import *
 from buscar_reemplazar import *
 from ordenar_lista import *
@@ -59,6 +60,7 @@ txt_out.place(x=680, y=290, width=600, height=200)
 def resultado(texto):
 	txt_out.delete("1.0", END)
 	txt_out.insert(END, texto)
+
 def mover_resultado(texto):
 	txt_out.delete("1.0", END)
 	txt_out.insert(END, texto)
@@ -103,10 +105,11 @@ def open_agregar():
 	top.mainloop()
 
 #crea un botón
-btn_contar_letras = Button(ventana, text="Contar letras", width="10", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
+btn_contar_letras = Button(ventana, text="Contar letras", command=lambda: resultado(contar_letras(txt_in.get("1.0","end-1c"))))
 btn_contar_palabras = Button(ventana, text="Contar palabras", width="10",command=lambda: resultado(contar_palabras(txt_in.get("1.0","end-1c"))))
 btn_convertir_mayuscula = Button(ventana, text="Todo mayúscula", width="10", command=lambda: resultado(convertir_mayuscula(txt_in.get("1.0","end-1c"))))
 btn_reversa_de_texto = Button(ventana, text="Invertir texto", width="10",command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
+btn_linea_azar =Button(ventana,text="Linea alazar",command=lambda: resultado(linea_azar(txt_in.get("1.0","end-1c"))))
 
 btn_borrar_espacios_extra= Button(ventana, text="Eliminar espacios adic.", width="14",command=lambda:resultado(borrar_espacios_extra(txt_in.get("1.0","end-1c"))))
 btn_eliminar_espacios = Button(ventana, text="Eliminar espacios", width="14",command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
@@ -115,13 +118,15 @@ btn_buscar_reemplazar= Button(ventana, text="Buscar y reemplazar",width="14", co
 btn_agregar_texto= Button(ventana, text="Agregar Texto a lineas",width="14", command=lambda: open_agregar())
 
 #define ubicación del botón
-# btn_mover_resultado.place(x=10,y=50)
-btn_contar_letras.place(x=425, y=60)
-btn_contar_palabras.place(x=550,y=60)
-btn_convertir_mayuscula.place(x=675,y=60)
-btn_reversa_de_texto.place(x=800,y=60)
+
+btn_contar_letras.place(x=400, y=60)
+btn_contar_palabras.place(x=525,y=60)
+btn_convertir_mayuscula.place(x=650,y=60)
+btn_reversa_de_texto.place(x=775,y=60)
+btn_linea_azar.place(x=900,y=60)
 
 # Linea Abajo
+
 btn_borrar_espacios_extra.place(x=310, y=105)
 btn_eliminar_espacios.place(x=460,y=105)
 btn_ordenar_lista.place(x=610,y=105)
