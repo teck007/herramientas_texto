@@ -15,6 +15,7 @@ from eliminar_espacios import *
 from invertir_texto import *
 from agregar_texto_linea import *
 from convertir_mayuscula import *
+from eliminar_saltos import *
 
 #crea objeto ventana 
 ventana = Tk() 
@@ -110,6 +111,8 @@ btn_contar_palabras = Button(ventana, text="Contar palabras", width="10",command
 btn_convertir_mayuscula = Button(ventana, text="Todo mayúscula", width="10", command=lambda: resultado(convertir_mayuscula(txt_in.get("1.0","end-1c"))))
 btn_reversa_de_texto = Button(ventana, text="Invertir texto", width="10",command=lambda: resultado(invertir_texto(txt_in.get("1.0","end-1c"))))
 btn_linea_azar =Button(ventana,text="Linea alazar",command=lambda: resultado(linea_azar(txt_in.get("1.0","end-1c"))))
+btn_eliminar_saltos =Button(ventana,text="Eliminar saltos",command=lambda: resultado(eliminar_saltos(txt_in.get("1.0","end-1c"))))
+
 
 btn_borrar_espacios_extra= Button(ventana, text="Eliminar espacios adic.", width="14",command=lambda:resultado(borrar_espacios_extra(txt_in.get("1.0","end-1c"))))
 btn_eliminar_espacios = Button(ventana, text="Eliminar espacios", width="14",command=lambda: resultado(eliminar_espacios(txt_in.get("1.0","end-1c"))))
@@ -119,11 +122,12 @@ btn_agregar_texto= Button(ventana, text="Agregar Texto a lineas",width="14", com
 
 #define ubicación del botón
 
-btn_contar_letras.place(x=400, y=60)
-btn_contar_palabras.place(x=525,y=60)
-btn_convertir_mayuscula.place(x=650,y=60)
-btn_reversa_de_texto.place(x=775,y=60)
-btn_linea_azar.place(x=900,y=60)
+btn_contar_letras.place(x=310, y=60)
+btn_contar_palabras.place(x=435,y=60)
+btn_convertir_mayuscula.place(x=560,y=60)
+btn_reversa_de_texto.place(x=685,y=60)
+btn_linea_azar.place(x=810,y=60)
+btn_eliminar_saltos.place(x=935,y=60)
 
 # Linea Abajo
 
